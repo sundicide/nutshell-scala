@@ -6,6 +6,7 @@ class ListTestSuite {
     val numList = List(1,2,3,4,5,6)
     val strList = List("a", "b", "c", "d")
     val mapList = List(("a", 1), ("b", 2), ("c", 3), ("d", 4))
+    val mapList2 = List(("a", 1), ("e", 5), ("b", 2), ("c", 3), ("d", 4))
   }
 
   @Test def `Fold Test`(): Unit = {
@@ -34,6 +35,10 @@ class ListTestSuite {
       val (left, right) = mapList.partition(d => d._2 < 3)
       assertEquals(left, List(("a", 1), ("b", 2)))
       assertEquals(right, List(("c", 3), ("d", 4)))
+
+      val (left2, right2) = mapList2.partition(d => d._2 < 3)
+      assertEquals(left2, List(("a", 1), ("b", 2)))
+      assertEquals(right2, List(("e", 5), ("c", 3), ("d", 4)))
     }
   }
 }
