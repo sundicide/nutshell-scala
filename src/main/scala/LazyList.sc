@@ -3,3 +3,9 @@
 def from(n: Int): LazyList[Int] = n #:: from(n+1)
 
 println(from(1).take(2).mkString("|"))
+
+def sieve(s: Stream[Int]): Stream[Int] = {
+  s.head #:: sieve(s.tail filter (_ % s.head != 0))
+}
+
+sieve(Stream.from(1)).take(5).toList
