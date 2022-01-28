@@ -1,9 +1,12 @@
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.junit._
 
+import scala.collection.immutable.HashMap
+
 class MapTestSuite {
   trait TestSets {
     val charMap1 = Map('k' -> 'K', 'g' -> 'G')
+    val intHashMap1 = HashMap("C" -> 4, "D" -> 5)
   }
 
   @Test def `Get Value in Map`(): Unit = {
@@ -33,6 +36,16 @@ class MapTestSuite {
     val mapFromConstructor = Map((1 ,2), (3, 4))
 
     assertTrue(mapFromList == mapFromConstructor)
+  }
+
+  @Test def `hashMap getOrElse Test`(): Unit = {
+    new TestSets {
+      val notFoundedKey = intHashMap1.getOrElse("A", 1)
+      assertEquals(notFoundedKey, 1)
+
+      val foundedKey = intHashMap1.getOrElse("C", 1)
+      assertEquals(foundedKey, 4)
+    }
   }
 
 }
